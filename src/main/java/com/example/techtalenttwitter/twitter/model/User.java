@@ -13,9 +13,9 @@ import org.hibernate.annotations.CreationTimestamp;
 @Entity
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
+    @Id // Specifies primary key
+    @GeneratedValue(strategy = GenerationType.AUTO) // Key automatically generated
+    @Column(name = "user_id") // Changes the name in database
     private Long id;
 
     private String email;
