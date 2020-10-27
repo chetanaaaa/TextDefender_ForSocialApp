@@ -14,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.swing.text.html.HTML.Tag;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -38,7 +37,7 @@ public class Tweet {
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "tweet_tag", joinColumns = @JoinColumn(name = "tweet_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
-	private List<Tag> tags;
+
 
 	@NotEmpty(message = "Tweet cannot be empty")
 	@Length(max = 280, message = "Tweet cannot have more than 280 characters")
@@ -50,10 +49,9 @@ public class Tweet {
     public Tweet() {
     }
 
-    public Tweet(Long id, User user, List<Tag> tags, @NotEmpty(message = "Tweet cannot be empty") @Length(max = 280, message = "Tweet cannot have more than 280 characters") String message, Date createdAt) {
+    public Tweet(Long id, User user, @NotEmpty(message = "Tweet cannot be empty") @Length(max = 280, message = "Tweet cannot have more than 280 characters") String message, Date createdAt) {
         this.id = id;
         this.user = user;
-        this.tags = tags;
         this.message = message;
         this.createdAt = createdAt;
     }
@@ -72,14 +70,6 @@ public class Tweet {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public List<Tag> getTags() {
-        return this.tags;
-    }
-
-    public void setTags(List<Tag> tags) {
-        this.tags = tags;
     }
 
     public String getMessage() {
@@ -103,7 +93,6 @@ public class Tweet {
         return "{" +
             " id='" + getId() + "'" +
             ", user='" + getUser() + "'" +
-            ", tags='" + getTags() + "'" +
             ", message='" + getMessage() + "'" +
             ", createdAt='" + getCreatedAt() + "'" +
             "}";
