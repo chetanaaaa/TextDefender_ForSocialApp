@@ -35,10 +35,6 @@ public class Tweet {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User user;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "tweet_tag", joinColumns = @JoinColumn(name = "tweet_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
-
-
 	@NotEmpty(message = "Tweet cannot be empty")
 	@Length(max = 280, message = "Tweet cannot have more than 280 characters")
 	private String message;
@@ -49,7 +45,7 @@ public class Tweet {
     public Tweet() {
     }
 
-    public Tweet(Long id, User user, @NotEmpty(message = "Tweet cannot be empty") @Length(max = 280, message = "Tweet cannot have more than 280 characters") String message, Date createdAt) {
+    public Tweet(Long id, User user, String message, Date createdAt) {
         this.id = id;
         this.user = user;
         this.message = message;
