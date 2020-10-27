@@ -10,6 +10,8 @@ import com.example.techtalenttwitter.twitter.repository.RoleRepository;
 import com.example.techtalenttwitter.twitter.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -46,5 +48,12 @@ public class UserService {
         Role userRole = roleRepository.findByRole("USER");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         return userRepository.save(user);
+    }
+
+    public User getLoggedInUser() {
+        String loggedInUsername = SecurityContextHolder.
+          getContext().getAuthentication().getName();
+        
+        return findByUsername(loggedInUsername);
     }
 }
