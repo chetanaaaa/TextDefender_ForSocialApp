@@ -47,48 +47,66 @@ public class Tweet {
 	@CreationTimestamp
 	private Date createdAt;
 
-	// Use the code below if your lombok is not working:
-	// public Long getId() {
-	// return id;
-	// }
+    public Tweet() {
+    }
 
-	// public User getUser() {
-	// return user;
-	// }
+    public Tweet(Long id, User user, List<Tag> tags, String message, Date createdAt) {
+        this.id = id;
+        this.user = user;
+        this.tags = tags;
+        this.message = message;
+        this.createdAt = createdAt;
+    }
 
-	// public void setUser(User user) {
-	// this.user = user;
-	// }
+    public Long getId() {
+        return this.id;
+    }
 
-	// public List<Tag> getTags() {
-	// return tags;
-	// }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	// public void setTags(List<Tag> tags) {
-	// this.tags = tags;
-	// }
+    public User getUser() {
+        return this.user;
+    }
 
-	// public String getMessage() {
-	// return message;
-	// }
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-	// public void setMessage(String message) {
-	// this.message = message;
-	// }
+    public List<Tag> getTags() {
+        return this.tags;
+    }
 
-	// public Date getCreatedAt() {
-	// return createdAt;
-	// }
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
 
-	// public void setCreatedAt(Date createdAt) {
-	// this.createdAt = createdAt;
-	// }
+    public String getMessage() {
+        return this.message;
+    }
 
-	// @Override
-	// public String toString() {
-	// return "Tweet [createdAt=" + createdAt + ", id=" + id + ", message=" +
-	// message + ", tags=" + tags
-	// + ", user=" + user + "]";
-	// }
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
+    public Date getCreatedAt() {
+        return this.createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", user='" + getUser() + "'" +
+            ", tags='" + getTags() + "'" +
+            ", message='" + getMessage() + "'" +
+            ", createdAt='" + getCreatedAt() + "'" +
+            "}";
+    }
+    
 }
