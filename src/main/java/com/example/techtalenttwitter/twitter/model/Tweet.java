@@ -50,7 +50,7 @@ public class Tweet {
     public Tweet() {
     }
 
-    public Tweet(Long id, User user, List<Tag> tags, String message, Date createdAt) {
+    public Tweet(Long id, User user, List<Tag> tags, @NotEmpty(message = "Tweet cannot be empty") @Length(max = 280, message = "Tweet cannot have more than 280 characters") String message, Date createdAt) {
         this.id = id;
         this.user = user;
         this.tags = tags;
