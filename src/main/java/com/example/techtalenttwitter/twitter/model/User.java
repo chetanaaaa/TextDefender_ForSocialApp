@@ -1,6 +1,7 @@
 package com.example.techtalenttwitter.twitter.model;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -45,7 +46,6 @@ public class User {
     @NotEmpty(message = "Please provide your last name")
     private String lastName;
     private int active;
-    
 
     @CreationTimestamp
     private Date createdAt;
@@ -54,11 +54,17 @@ public class User {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_follower", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "follower_id"))
+    private List<User> followers;
+
+    @ManyToMany(mappedBy = "followers")
+    private List<User> following;
+
     public User() {
     }
 
-    public User(Long id, String email, String username, String password, String firstName, String lastName, int active,
-            Date createdAt, Set<Role> roles) {
+    public User(Long id, String email, String username, String password, String firstName, String lastName, int active, Date createdAt, Set<Role> roles, List<User> followers, List<User> following) {
         this.id = id;
         this.email = email;
         this.username = username;
@@ -68,6 +74,8 @@ public class User {
         this.active = active;
         this.createdAt = createdAt;
         this.roles = roles;
+        this.followers = followers;
+        this.following = following;
     }
 
     public Long getId() {
@@ -140,6 +148,22 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public List<User> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(List<User> followers) {
+        this.followers = followers;
+    }
+
+    public List<User> getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(List<User> following) {
+        this.following = following;
     }
 
     @Override
