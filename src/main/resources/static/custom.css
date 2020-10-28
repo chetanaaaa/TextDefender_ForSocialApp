@@ -65,9 +65,13 @@ body {
     margin-bottom: 20px;
 }
 
+.tweetIcon {
+    margin-top: 3px;
+}
+
 .tweetHead {
     width: 100%;
-    margin-left: 5%;
+    margin-left: 10px;
 }
 
 .tweetHeadElement {
@@ -82,14 +86,14 @@ body {
 }
 
 .tweetContent {
-    margin-left: 5%;
+    margin-left: 10px;
     font-size: 16px;
 }
 
 .tweetFoot {
     width: 100%;
     margin-top: 15px;
-    margin-left: 5%;
+    margin-left: 10px;
 }
 
 .tweetFootElement {
@@ -104,4 +108,41 @@ body {
 
 .newTweetText {
     font-size: 18px;
+}
+
+.userIcon {
+    margin-top: 20px;
+    margin-left: 18%;
+}
+
+.userFollow {
+    margin-top: 180px;
+}
+
+.userTitle {
+    font-weight: bold;
+}
+
+.userHeadline {
+    background-color: azure;
+    margin: auto;
+    width: 70%;
+    border-radius: 10px;
+}
+
+.userInfo {
+    display: inline-block;
+    margin-left: 5%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.userFollowButton {
+    float: right;
+    margin-right: 5%;
+    margin-top: 30px;
+}
+
+.userTweets {
+    margin-left: 18%;
 }
