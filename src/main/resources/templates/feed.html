@@ -9,22 +9,37 @@
 <body>
     <div class="container-fluid">
         <div th:replace="fragments/navbar"></div>
-        <div th:if="${not #lists.isEmpty(tweetList)}">
-            <h3>Tweets</h3>
-            <ul class="list-group" th:each="tweet:${tweetList}">
-                <li class="list-group-item">
-                    <div>
-                        <a th:href="@{/users/} + ${tweet.user.username}">
-                            <h5>@<span th:text="${tweet.user.username}"></span></h5>
-                        </a>
-                            <small><span th:text="${#dates.format(tweet.createdAt, 'M/d/yy')}"></span></small>
-                    </div>
-                    <p th:utext="${tweet.message}"></p>
-                </li>
-            </ul>
-        </div>
-        <div th:if="${#lists.isEmpty(tweetList)}">
-		    <h3>No Recent Tweets</h3>
+        <div class="row">
+            <div class="col col-sm-3"></div>
+            <div class="col col-sm-6">
+                <div th:if="${not #lists.isEmpty(tweetList)}">
+                    <h3 class="feedTitle">Tweets</h3>
+                    <ul class="list-group" th:each="tweet:${tweetList}">
+                        <li class="list-group-item">
+                            <div class="tweetHead">
+                                    <h4>
+                                        <a class="tweetName" th:href="@{/users/} + ${tweet.user.username}">
+                                            <span th:text="${tweet.user.firstName}"></span> 
+                                            <span th:text="${tweet.user.lastName}"></span>
+                                        </a>
+                                        @<span th:text="${tweet.user.username}"></span> • <small><span th:text="${#dates.format(tweet.createdAt, 'M/d/yy')}"></span></small>
+                                    </h4>
+                            </div>
+                            <p class="tweetContent" th:utext="${tweet.message}"></p>
+                            <div class="tweetFoot">
+                                <p class="tweetFootElement"><i class="far fa-comment fa-lg"></i></p>
+                                <p class="tweetFootElement"><i class="fas fa-retweet fa-lg"></i></p>
+                                <p class="tweetFootElement"><i class="far fa-heart fa-lg"></i></p>
+                                <p class="tweetFootElement"><i class="fas fa-external-link-alt fa-lg"></i></p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div th:if="${#lists.isEmpty(tweetList)}">
+                    <h3>No Recent Tweets</h3>
+                </div>
+            </div>
+            <div class="col col-sm-3"></div>
         </div>
     </div>
     <div th:replace="fragments/footer"></div>
