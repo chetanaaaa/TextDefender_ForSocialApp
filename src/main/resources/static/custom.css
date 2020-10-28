@@ -3,6 +3,10 @@ html {
     min-height: 100%;
 }
 
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .container {
     padding: 0%;
     width: 100%;
@@ -40,6 +44,7 @@ html {
 
 .authoTitle {
     text-align: center;
+    font-weight: bold;
     margin-top: 15%;
 }
 
@@ -53,4 +58,50 @@ html {
 .authoSubmit {
     margin: auto;
     width: 80%;
+}
+
+.feedTitle {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.tweetHead {
+    width: 100%;
+    margin-left: 5%;
+}
+
+.tweetHeadElement {
+    display: inline;
+    margin-right: 20%;
+    padding-top: 5px;
+}
+
+.tweetName {
+    color: black;
+    font-weight: bold;
+}
+
+.tweetContent {
+    margin-left: 5%;
+    font-size: 16px;
+}
+
+.tweetFoot {
+    width: 100%;
+    margin-top: 15px;
+    margin-left: 5%;
+}
+
+.tweetFootElement {
+    display: inline;
+    margin-right: 18%;
+    padding-top: 5px;
+}
+
+.newTweetTitle {
+    font-weight: bold;
+}
+
+.newTweetText {
+    font-size: 18px;
 }
