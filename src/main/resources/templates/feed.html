@@ -3,17 +3,24 @@
 
 <head>
     <title>Feed</title>
-    <div th:replace="fragments/styling :: headStyles" ></div>
+    <div th:replace="fragments/styling :: headStyles"></div>
 </head>
+
 <body>
     <div class="container">
         <div th:replace="fragments/navbar"></div>
         <h2>Tweets</h2>
-        <div th:each="tweet:${tweetList}">
-            <h5>@<span th:text="${tweet.user.username}"></span>
-            <small><span th:text="${#dates.format(tweet.createdAt, 'M/d/yy')}"></span></small></h5>
-            <p th:utext="${tweet.message}"></p>
-    	</div>
+        <ul class="list-group" th:each="tweet:${tweetList}">
+            <li class="list-group-item">
+                <div>
+                    <a th:href="@{/users/} + ${tweet.user.username}">
+                        <h5>@<span th:text="${tweet.user.username}"></span></h5>
+                    </a>
+                        <small><span th:text="${#dates.format(tweet.createdAt, 'M/d/yy')}"></span></small>
+                </div>
+                <p th:utext="${tweet.message}"></p>
+            </li>
+        </ul>
     </div>
 </body>
 </html>
