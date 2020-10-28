@@ -7,20 +7,25 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <div th:replace="fragments/navbar"></div>
-        <h2>Tweets</h2>
-        <ul class="list-group" th:each="tweet:${tweetList}">
-            <li class="list-group-item">
-                <div>
-                    <a th:href="@{/users/} + ${tweet.user.username}">
-                        <h5>@<span th:text="${tweet.user.username}"></span></h5>
-                    </a>
-                        <small><span th:text="${#dates.format(tweet.createdAt, 'M/d/yy')}"></span></small>
-                </div>
-                <p th:utext="${tweet.message}"></p>
-            </li>
-        </ul>
+        <div th:if="${not #lists.isEmpty(tweetList)}">
+            <h3>Tweets</h3>
+            <ul class="list-group" th:each="tweet:${tweetList}">
+                <li class="list-group-item">
+                    <div>
+                        <a th:href="@{/users/} + ${tweet.user.username}">
+                            <h5>@<span th:text="${tweet.user.username}"></span></h5>
+                        </a>
+                            <small><span th:text="${#dates.format(tweet.createdAt, 'M/d/yy')}"></span></small>
+                    </div>
+                    <p th:utext="${tweet.message}"></p>
+                </li>
+            </ul>
+        </div>
+        <div th:if="${#lists.isEmpty(tweetList)}">
+		    <h3>No Recent Tweets</h3>
+        </div>
     </div>
     <div th:replace="fragments/footer"></div>
 </body>
