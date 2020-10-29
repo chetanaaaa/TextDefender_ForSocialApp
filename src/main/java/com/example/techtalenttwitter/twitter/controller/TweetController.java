@@ -56,8 +56,21 @@ public class TweetController {
     
 
     @GetMapping(value = "/tweets/{tag}")
-    public String getTweetsByTag(@PathVariable(value = "tag") String tag, Model model) {
-        List<TweetDisplay> tweets = tweetService.findAllWithTag(tag);
+    public String getTweetsByTag(@RequestParam(value = "filter", required = false) String filter, @PathVariable(value = "tag") String tag, Model model) {
+        User loggedInUser = userService.getLoggedInUser();
+        List<TweetDisplay> tweets = new ArrayList<>();
+        if (filter == null) {
+            filter = "all";
+        }
+        if (filter.equalsIgnoreCase("following")) {
+            List<User> following = loggedInUser.getFollowing();
+            following.add(loggedInUser); // Include loggedInUser in the feed
+            tweets = tweetService.findByTagsAndByUser(tag, following);
+            model.addAttribute("filter", "following");
+        } else {
+            tweets = tweetService.findAllWithTag(tag);
+            model.addAttribute("filter", "all");
+        }
         model.addAttribute("tweetList", tweets);
         model.addAttribute("tag", tag);
         return "taggedTweets";
