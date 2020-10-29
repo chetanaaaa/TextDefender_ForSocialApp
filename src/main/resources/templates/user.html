@@ -42,7 +42,7 @@
                                                 <span th:text="${tweet.user.firstName}"></span>
                                                 <span th:text="${tweet.user.lastName}"></span>
                                             </a>
-                                            @<span th:text="${tweet.user.username}"></span> • <small><span th:text="${#dates.format(tweet.createdAt, 'M/d/yy')}"></span></small>
+                                            @<span th:text="${tweet.user.username}"></span> • <small><span th:text="${tweet.date}"></span></small>
                                         </h4>
                                     </div>
                                     <p class="tweetContent" th:utext="${tweet.message}"></p>
