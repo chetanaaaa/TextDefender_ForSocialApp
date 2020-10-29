@@ -2,10 +2,6 @@ package com.example.techtalenttwitter.twitter.model;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-
-
-@Entity
 public class TweetDisplay {
     private User user;
     private String message;
