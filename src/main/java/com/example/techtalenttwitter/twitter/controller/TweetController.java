@@ -30,6 +30,7 @@ public class TweetController {
 
         User loggedInUser = userService.getLoggedInUser();
         List<User> usersFollowing = loggedInUser.getFollowing();
+        usersFollowing.add(loggedInUser); // Include loggedInUser in the feed
         List<Tweet> tweets = tweetService.findAllByUsers(usersFollowing);
 
         model.addAttribute("tweetList", tweets);
