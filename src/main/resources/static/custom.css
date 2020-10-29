@@ -70,6 +70,11 @@ a.tag {
     width: 80%;
 }
 
+.newTweetSuccess {
+    margin-top: 15px;
+    text-align: center;
+}
+
 .feedTitle {
     font-weight: bold;
     margin-bottom: 20px;
