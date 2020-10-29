@@ -32,12 +32,12 @@ public class TweetService {
 
     public List<Tweet> findAllByUser(User user) {
         List<Tweet> tweets = tweetRepository.findAllByUserOrderByCreatedAtDesc(user);
-        return tweets;
+        return formatTweets(tweets);
     }
 
     public List<Tweet> findAllByUsers(List<User> users) {
         List<Tweet> tweets = tweetRepository.findAllByUserInOrderByCreatedAtDesc(users);
-        return tweets;
+        return formatTweets(tweets);
     }
 
     public List<Tweet> findAllWithTag(String tag) {
