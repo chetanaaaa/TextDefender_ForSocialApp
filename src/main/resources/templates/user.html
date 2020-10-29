@@ -29,33 +29,7 @@
         <div class="userTweets">
                 <div th:if="${not #lists.isEmpty(tweetList)}">
                     <h3 class="feedTitle">Tweets</h3>
-                    <ul class="list-group" th:each="tweet:${tweetList}">
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col col-sm-2 col-md-1">
-                                    <p class="tweetIcon"><i class="far fa-user-circle fa-3x" style="color:#00aced;"></i></p>
-                                </div>
-                                <div class="col col-sm-10 col-md-11">
-                                    <div class="tweetHead">
-                                        <h4>
-                                            <a class="tweetName" th:href="@{/users/} + ${tweet.user.username}">
-                                                <span th:text="${tweet.user.firstName}"></span>
-                                                <span th:text="${tweet.user.lastName}"></span>
-                                            </a>
-                                            @<span th:text="${tweet.user.username}"></span> • <small><span th:text="${tweet.date}"></span></small>
-                                        </h4>
-                                    </div>
-                                    <p class="tweetContent" th:utext="${tweet.message}"></p>
-                                    <div class="tweetFoot">
-                                        <p class="tweetFootElement"><i class="far fa-comment fa-lg"></i></p>
-                                        <p class="tweetFootElement"><i class="fas fa-retweet fa-lg"></i></p>
-                                        <p class="tweetFootElement"><i class="far fa-heart fa-lg"></i></p>
-                                        <p class="tweetFootElement"><i class="fas fa-external-link-alt fa-lg"></i></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+                    <div th:replace="fragments/listTweets"></div>
                 </div>
                 <div th:if="${#lists.isEmpty(tweetList)}">
                     <h3>No Recent Tweets</h3>
