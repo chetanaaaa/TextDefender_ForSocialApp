@@ -144,5 +144,10 @@ body {
 }
 
 .userTweets {
-    margin-left: 18%;
+    margin:auto;
+    width: 63%;
+}
+
+.usersTitle {
+    font-weight: bold;
 }
