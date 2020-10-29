@@ -50,6 +50,22 @@ public class TweetService {
         return formatTweets(tweets);
     }
 
+    public List<TweetDisplay> findByTagsAndByUser(String tag, List<User> users) {
+        List<Tweet> userTweets = tweetRepository.findAllByUserInOrderByCreatedAtDesc(users);
+        List<Tweet> tagTweets = tweetRepository.findByTags_PhraseOrderByCreatedAtDesc(tag);
+        List<Tweet> outTweets = new ArrayList<Tweet>();
+
+        for (Tweet tagTweet : tagTweets) {
+            for (Tweet userTweet : userTweets) {
+                if (userTweet.getUser().getUsername() == tagTweet.getUser().getUsername()) {
+                    outTweets.add(tagTweet);
+                    break;
+                }
+            }
+        }
+        return formatTweets(outTweets);
+    }
+
     public void save(Tweet tweet) {
         handleTags(tweet);
         tweetRepository.save(tweet);
