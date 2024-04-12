@@ -3,6 +3,7 @@ package com.example.techtalenttwitter.twitter.configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
@@ -12,5 +13,10 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         BCryptPasswordEncoder bCryptPasswordEncoder = 
             new BCryptPasswordEncoder();
         return bCryptPasswordEncoder;
+    }
+    
+    @Bean
+    public HiddenHttpMethodFilter hiddenHttpMethodFilter() {
+        return new HiddenHttpMethodFilter();
     }
 }

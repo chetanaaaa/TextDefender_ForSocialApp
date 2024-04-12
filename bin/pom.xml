@@ -8,7 +8,7 @@
 		<version>2.3.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.ooad.twitwit</groupId>
+	<groupId>com.example.techtalenttwitter</groupId>
 	<artifactId>twitter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>twitter</name>

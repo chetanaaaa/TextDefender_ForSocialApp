@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Manage Users</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin - Manage Users</h1>
+        
+        <!-- List of Users -->
+        <h2>List of Users</h2>
+        <ul>
+            <li th:each="user : ${users}">
+                <span th:text="${user.username}"></span> - 
+                <span th:text="${user.firstName}"></span> 
+                <span th:text="${user.lastName}"></span>
+                <form th:action="@{/admin/deleteUser/{id}(id=${user.id})}" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -12,6 +12,7 @@ import com.example.techtalenttwitter.twitter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,6 +54,12 @@ public class UserController {
 
 		return "users";
 	}
+	
+	@DeleteMapping("/admin/deleteUser/{id}")
+    public String deleteUser(@PathVariable(value = "id") Long userId, Model model) {
+        userService.deleteUserById(userId);
+        return "redirect:/admin/manage"; 
+    }
 
 	@GetMapping(value = "/users/{username}") // URL
 	public String getUser(@PathVariable(value = "username") String username, Model model) {

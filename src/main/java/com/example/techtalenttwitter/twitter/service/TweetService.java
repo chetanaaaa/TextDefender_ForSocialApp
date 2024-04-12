@@ -153,4 +153,8 @@ public class TweetService {
 
         }
     }
+
+	public Tweet findById(Long id) {
+	    return tweetRepository.findById(id).orElse(null);
+	}
 }

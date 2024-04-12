@@ -1,13 +1,16 @@
 package com.example.techtalenttwitter.twitter.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
 
+import com.example.techtalenttwitter.twitter.model.SpamWord;
 import com.example.techtalenttwitter.twitter.model.Tweet;
 import com.example.techtalenttwitter.twitter.model.TweetDisplay;
 import com.example.techtalenttwitter.twitter.model.User;
+import com.example.techtalenttwitter.twitter.service.SpamWordService;
 import com.example.techtalenttwitter.twitter.service.TweetService;
 import com.example.techtalenttwitter.twitter.service.UserService;
 
@@ -22,6 +25,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class TweetController {
+	
+	@Autowired
+	private SpamWordService spamWordService;
+	
     @Autowired
     private UserService userService;
 
@@ -80,11 +87,31 @@ public class TweetController {
     public String submitTweetForm(@Valid Tweet tweet, BindingResult bindingResult, Model model) {
         User user = userService.getLoggedInUser();
         if (!bindingResult.hasErrors()) {
-            tweet.setUser(user);
-            tweetService.save(tweet);
-            model.addAttribute("successMessage", "Tweet successfully created!");
-            model.addAttribute("tweet", new Tweet());
+            // Check if the tweet contains spam words
+            if (containsSpam(tweet.getMessage())) {
+                model.addAttribute("errorMessage", "Your tweet contains spam words. Please remove them and try again.");
+            } else {
+                tweet.setUser(user);
+                tweetService.save(tweet);
+                model.addAttribute("successMessage", "Tweet successfully created!");
+                model.addAttribute("tweet", new Tweet());
+            }
         }
         return "newTweet";
     }
+
+    // Helper method to check if the tweet contains spam words
+    private boolean containsSpam(String content) {
+        // Fetch spam words from the database
+        List<SpamWord> spamWords = spamWordService.getAllSpamWords();
+
+        // Check if any of the fetched spam words exist in the tweet content
+        for (SpamWord spamWord : spamWords) {
+            if (content.toLowerCase().contains(spamWord.getWord().toLowerCase())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
