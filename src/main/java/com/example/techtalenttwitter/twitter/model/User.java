@@ -61,8 +61,6 @@ public class User {
     @ManyToMany(mappedBy = "followers")
     private List<User> following;
 
-    public User() {
-    }
 
     public User(Long id, String email, String username, String password, String firstName, String lastName, int active, Date createdAt, Set<Role> roles, List<User> followers, List<User> following) {
         this.id = id;
@@ -78,7 +76,11 @@ public class User {
         this.following = following;
     }
 
-    public Long getId() {
+    public User() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Long getId() {
         return this.id;
     }
 
