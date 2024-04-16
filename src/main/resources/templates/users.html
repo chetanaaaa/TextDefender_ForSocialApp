@@ -24,7 +24,9 @@
                 <a th:href="@{/users/} + ${user.username}" class="list-group-item list-group-item-action">
                     <div class="row">
                         <div class="col col-sm-6">
-                            <h5 class="mb-1" style="color: #00aced"><i class="fab fa-twitter"></i> @<span
+                            <h5 class="mb-1" style="color:purple">
+                                <img src="https://png.pngtree.com/png-vector/20230912/ourmid/pngtree-purple-mushroom-with-dots-png-image_10018840.png"alt="Logo" width="30" height="30">
+                            @<span
                                     th:text="${user.username}"></span></h5>
                             <h5 class="mb-1"><span th:text="${user.firstName}"></span> <span
                                     th:text="${user.lastName}"></span>

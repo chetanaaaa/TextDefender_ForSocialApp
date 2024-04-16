@@ -10,8 +10,10 @@
         <nav class="row navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#" style="color: #00aced">
-                        <i class="fab fa-twitter"></i> Tech Talent Twitter</a>
+                    <a class="navbar-brand" href="#" style="color: white; display: flex; align-items: center;">
+                        <span style="margin-right: 5px;">Twitwit</span>
+                        <img src="https://png.pngtree.com/png-vector/20230912/ourmid/pngtree-purple-mushroom-with-dots-png-image_10018840.png"alt="Logo" width="30" height="30">
+                    </a>
                 </div>
                 <div id="navbar">
                     <ul class="nav navbar-nav" sec:authorize="isAuthenticated()">
@@ -21,7 +23,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li sec:authorize="isAuthenticated()">
-                            <a style="pointer-events: none;color: #00aced;">
+                            <a style="pointer-events: none;color:plum;">
                                 @<span sec:authentication="name"></span>
                             </a>
                         </li>

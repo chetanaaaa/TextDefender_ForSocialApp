@@ -37,12 +37,12 @@ a.tag {
     bottom: 0px;
     width: 100%;
     line-height: 50px;
-    background-color: aliceblue;
+    background-color:rgb(196, 179, 196);
 }
 
 .btn-twit {
-    color: white;
-    background-color: #00aced;
+    color: black;
+    background-color: purple;
 }
 
 .authoImage {
@@ -166,4 +166,7 @@ a.tag {
 .usersTitle {
     font-weight: bold;
     margin-bottom: 20px;
+}
+.logo-text {
+    margin-left: 5px; /* Adjust this value to add space between the image and the text */
 }

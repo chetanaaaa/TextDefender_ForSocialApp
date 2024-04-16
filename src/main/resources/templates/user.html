@@ -9,11 +9,11 @@
 <body>
     <div class="container">
         <div th:replace="fragments/navbar"></div>
-        <p class="userIcon"><i class="far fa-user-circle fa-10x" style="color:#00aced;"></i></p>
+        <p class="userIcon"><i class="far fa-user-circle fa-10x" style="color:purple;"></i></p>
         <div class="userHeadline">
             <div class="userInfo">
                 <h2 class="userTitle"><span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span> - <span
-                    style="color: #00aced;">@</span><span style="color: #00aced;" th:text="${user.username}"></span></h2>
+                    style="color: plum;">@</span><span style="color: purple;" th:text="${user.username}"></span></h2>
     
                 <h5>Joined: <span th:text="${#dates.format(user.createdAt, 'M/d/yy')}"></span></h5>
             </div>
