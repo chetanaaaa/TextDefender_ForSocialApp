@@ -100,12 +100,12 @@ public class TweetController {
         return "newTweet";
     }
 
-    // Helper method to check if the tweet contains spam words
+   
     private boolean containsSpam(String content) {
-        // Fetch spam words from the database
+    
         List<SpamWord> spamWords = spamWordService.getAllSpamWords();
 
-        // Check if any of the fetched spam words exist in the tweet content
+        
         for (SpamWord spamWord : spamWords) {
             if (content.toLowerCase().contains(spamWord.getWord().toLowerCase())) {
                 return true;

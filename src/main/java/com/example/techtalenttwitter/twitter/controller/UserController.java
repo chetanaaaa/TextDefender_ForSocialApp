@@ -61,7 +61,7 @@ public class UserController {
         return "redirect:/admin/manage"; 
     }
 
-	@GetMapping(value = "/users/{username}") // URL
+	@GetMapping(value = "/users/{username}") 
 	public String getUser(@PathVariable(value = "username") String username, Model model) {
 		User loggedInUser = userService.getLoggedInUser();
 		User user = userService.findByUsername(username);
@@ -77,12 +77,12 @@ public class UserController {
 
 		model.addAttribute("isSelfPage", isSelfPage);
 
-		//CHANGE FOLLOWING TO FOLLOWINGSTATUS
+
 		model.addAttribute("followingStatus", isFollowing);
 
 		model.addAttribute("tweetList", tweets);
 		model.addAttribute("user", user);
-		return "user"; // HTML
+		return "user"; 
 	}
 
 	private void SetTweetCounts(List<User> users, Model model) {

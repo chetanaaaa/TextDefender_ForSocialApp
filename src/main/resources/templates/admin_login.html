@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <head>
+        <title>Log in</title>
+        <div th:replace="fragments/styling :: headStyles"></div>
+    </head>
+    
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row flex">
+            <div class="col-sm-1 col-xs-2"></div>
+            <div class="col-sm-5 hidden-xs">
+                <img class="authoImage center"
+                        src="https://media.licdn.com/dms/image/D4D12AQE5sHbCVM5ZJQ/article-cover_image-shrink_600_2000/0/1688074703528?e=2147483647&v=beta&t=bXn9WoFu0v1TB6a74aRKbo-KpiRcpyLzVef0Th2K9XM">
+               
+            </div>
+            <div class="col-sm-5 col-xs-8">
+                <h2 class="authoTitle">Welcome!</h2>
+                <form class="authoForm" id="loginForm"> <!-- Added id="loginForm" to the form -->
+                    <br />
+                    <input type="text" id="username" name="username"  placeholder="Username" class="form-control" />
+                    <br />
+                    <input type="password" id="password" name="password"  placeholder="Password"
+                        class="form-control" />
+                    <br />
+                    <div align="center" th:if="${param.error}">
+                        <h4 style="color: red">Login unsuccessful.</h4>
+                    </div>
+                    <button class="btn btn-md btn-twit btn-block" name="Submit" value="Login" type="Submit">Log
+                        in</button>
+                </form>
+              
+            </div>
+            <div class="col-sm-1 col-xs-2"></div>
+        </div>
+    </div>
+    
+    <p id="errorMessage" style="color: red;"></p> <!-- Error message element -->
+    <div th:replace="fragments/footer"></div>
+</body>
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+
+        if (username === "admin" && password === "12345") { // Corrected the condition
+            // Proceed to admin home page
+            window.location.href = '/admin/home';
+        } else {
+            // Display message for wrong admin credentials
+            var errorMessage = document.getElementById('errorMessage');
+            errorMessage.textContent = 'Wrong admin credentials. Please try again.';
+        }
+    });
+</script>
+</html>

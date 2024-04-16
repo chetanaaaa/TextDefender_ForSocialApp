@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Manage Spam Words</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        /* Center align content */
+        .center {
+            text-align: center;
+        }
+
+        /* Add margin to top */
+        .top-margin {
+            margin-top: 20px;
+        }
+
+        /* Add padding to form */
+        form {
+            padding: 20px;
+            border: 1px solid black;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Style input fields */
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: #000; /* Set text color */
+        }
+
+        /* Style submit button */
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: purple;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: purple;
+        }
+
+        /* Style offcanvas button */
+        .offcanvas-btn {
+            margin-top: 20px;
+        }
+
+        /* Remove placeholder dots */
+        ::placeholder {
+            color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <h1>Admin - Manage Spam Words</h1>
+    </div>
+
+    <div class="center top-margin">
+        <h2>Add New Spam Word</h2>
+        <form id="addSpamWordForm">
+            <input type="text" id="newSpamWord" name="newSpamWord" placeholder="Enter new spam word" required>
+            <button type="submit">Add</button>
+        </form>
+    </div>
+
+    <div class="center top-margin">
+        <h2>Existing Spam Words</h2>
+        <ul id="spamWordList">
+            <!-- Spam words will be dynamically added here -->
+        </ul>
+    </div>
+    <div class="text-center top-margin">
+    <button class="btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">Done?</button>
+    </div>
+    <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+      <div class="offcanvas-header">
+        <button class="btn btn-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><a href="/admin/home">Go back Home</a></button>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+      </div>
+    </div>
+    
+</body>
+
+<script>
+// admin.js
+
+document.addEventListener("DOMContentLoaded", function() {
+// Function to fetch existing spam words from the backend
+function fetchSpamWords() {
+fetch('/api/spam-words')
+    .then(response => response.json())
+    .then(spamWords => {
+        const spamWordList = document.getElementById('spamWordList');
+        spamWordList.innerHTML = ''; // Clear existing list
+        spamWords.forEach(spamWord => {
+            const listItem = document.createElement('li');
+            listItem.textContent = spamWord.word;
+            spamWordList.appendChild(listItem);
+        });
+    })
+    .catch(error => console.error('Error fetching spam words:', error));
+}
+
+// Call fetchSpamWords function when the page loads to display existing spam words
+fetchSpamWords();
+
+// Event listener for the add spam word form submission
+document.getElementById('addSpamWordForm').addEventListener('submit', function(event) {
+event.preventDefault();
+const newSpamWord = document.getElementById('newSpamWord').value;
+
+fetch('/api/spam-words', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ word: newSpamWord })
+})
+.then(response => {
+    if (response.ok) {
+        // If successful, fetch and display updated list of spam words
+        fetchSpamWords();
+        document.getElementById('newSpamWord').value = ''; // Clear input field
+    } else {
+        console.error('Error adding spam word');
+    }
+})
+.catch(error => console.error('Error adding spam word:', error));
+});
+});
+
+</script>
+
+</html>

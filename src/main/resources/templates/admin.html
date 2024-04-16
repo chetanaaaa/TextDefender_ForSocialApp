@@ -59,8 +59,47 @@
 </head>
 <body>
     <body class="p-3 m-0 border-0 bd-example m-0 border-0">
-
+         
         <!-- Example Code -->
+        <nav class="navbar navbar-dark bg-dark fixed-top">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Twitwit</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                <div class="offcanvas-header">
+                  <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Welcome Admin</h5>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                  <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                   
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                      </a>
+                      <ul class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item" href="/admin/filter">Add Filter Words</a></li>
+                        <li><a class="dropdown-item" href="/admin/manage">Manage User</a></li>
+                        <li>
+                          <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/admin/login">Logout</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <form class="d-flex mt-3" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-success" type="submit">Search</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </nav>
         
             
         <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
@@ -84,80 +123,6 @@
               <span class="visually-hidden">Next</span>
             </button>
           </div>
-        <div class="center">
-            <h1>Admin - Manage Spam Words</h1>
-        </div>
-    
-        <!-- Form to Add a New Spam Word -->
-        <div class="center">
-            <h2>Add New Spam Word</h2>
-            <form id="addSpamWordForm">
-                <input type="text" id="newSpamWord" placeholder="Enter new spam word">
-                <button type="submit">Add</button>
-            </form>
-        </div>
-    
-        <!-- List of Existing Spam Words -->
-        <div class="center">
-            <h2>Existing Spam Words</h2>
-            <ul id="spamWordList">
-                <!-- Spam words will be dynamically added here -->
-            </ul>
-        </div>
-    
-       
-        <a href="/admin/manage" class="manage-users-link">Manage Users</a>
-    </body>
-    
-<script>
-	// admin.js
-
-document.addEventListener("DOMContentLoaded", function() {
-    // Function to fetch existing spam words from the backend
-    function fetchSpamWords() {
-        fetch('/api/spam-words')
-            .then(response => response.json())
-            .then(spamWords => {
-                const spamWordList = document.getElementById('spamWordList');
-                spamWordList.innerHTML = ''; // Clear existing list
-                spamWords.forEach(spamWord => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = spamWord.word;
-                    spamWordList.appendChild(listItem);
-                });
-            })
-            .catch(error => console.error('Error fetching spam words:', error));
-    }
-
-    // Call fetchSpamWords function when the page loads to display existing spam words
-    fetchSpamWords();
-
-    // Event listener for the add spam word form submission
-    document.getElementById('addSpamWordForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const newSpamWord = document.getElementById('newSpamWord').value;
-        
-        // Send POST request to add new spam word
-        fetch('/api/spam-words', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ word: newSpamWord })
-        })
-        .then(response => {
-            if (response.ok) {
-                // If successful, fetch and display updated list of spam words
-                fetchSpamWords();
-                document.getElementById('newSpamWord').value = ''; // Clear input field
-            } else {
-                console.error('Error adding spam word');
-            }
-        })
-        .catch(error => console.error('Error adding spam word:', error));
-    });
-});
-
-</script>
-
+      
+   
 </html>
