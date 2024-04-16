@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Twitwit!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #3f51b5;
+            color: white;
+            padding: 20px 0;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .button {
+            margin: 10px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            background-color: #673ab7;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-transform: uppercase;
+        }
+        .button:hover {
+            background-color: #512da8;
+        }
+        .logo {
+            width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-container">
+            <img src="https://png.pngtree.com/png-vector/20230912/ourmid/pngtree-purple-mushroom-with-dots-png-image_10018840.png" alt="Logo" class="logo">
+            <div class="logo-text"></div>
+        </div>
+        <h1>Welcome to Twitwit!</h1>
+        <h3>Tweet Wisely!</h3>
+    </div>
+    <div class="container">
+        <button class="button" onclick="redirectToUserLogin()">User Login</button>
+        <button class="button" onclick="redirectToAdminLogin()">Admin Login</button>
+    </div>
+
+    <script>
+        function redirectToAdminLogin() {
+            window.location.href = '/admin/login';
+        }
+
+        function redirectToUserLogin() {
+            window.location.href = '/login';
+        }
+    </script>
+</body>
+</html>

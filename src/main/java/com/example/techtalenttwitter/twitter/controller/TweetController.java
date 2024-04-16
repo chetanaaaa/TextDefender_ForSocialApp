@@ -35,7 +35,7 @@ public class TweetController {
     @Autowired
     private TweetService tweetService;
 
-    @GetMapping(value = { "/tweets", "/" })
+    @GetMapping(value = { "/tweets" })
     public String getFeed(@RequestParam(value = "filter", required = false) String filter, Model model) {
         User loggedInUser = userService.getLoggedInUser();
         List<TweetDisplay> tweets = new ArrayList<>();

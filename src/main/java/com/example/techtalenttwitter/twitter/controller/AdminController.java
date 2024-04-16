@@ -21,6 +21,11 @@ public class AdminController {
     public String adminlogin() {
         return "admin_login";
     }
+    @GetMapping("/")
+    public String landing() {
+        return "index";
+    }
+    
     @GetMapping("/admin/home")
     public String adminhome() {
         return "admin";
