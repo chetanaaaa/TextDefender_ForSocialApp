@@ -11,17 +11,28 @@
         
         <!-- List of Users -->
         <h2>List of Users</h2>
-        <ul>
-            <li th:each="user : ${users}">
-                <span th:text="${user.username}"></span> - 
-                <span th:text="${user.firstName}"></span> 
-                <span th:text="${user.lastName}"></span>
-                <form th:action="@{/admin/deleteUser/{id}(id=${user.id})}" method="post">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit">Delete</button>
-                </form>
-            </li>
-        </ul>
+        <div class="list-group">
+            <ul>
+                <!-- Iterate over each user and display their information -->
+                <li th:each="user : ${users}">
+                    <div class="row">
+                        <div class="col col-sm-6">
+                            <h5 class="mb-1" style="color:purple">
+                                <img src="https://png.pngtree.com/png-vector/20230912/ourmid/pngtree-purple-mushroom-with-dots-png-image_10018840.png" alt="Logo" width="30" height="30">
+                                @<span th:text="${user.username}"></span>
+                            </h5>
+                            <h5 class="mb-1">
+                                <span th:text="${user.firstName}"></span>
+                                <span th:text="${user.lastName}"></span>
+                                <!-- Add any other user information you want to display -->
+                            </h5>
+                        </div>
+
+                        <!-- Add any additional functionality or buttons here -->
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>
