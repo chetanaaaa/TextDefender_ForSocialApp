@@ -25,10 +25,19 @@
                                 <span th:text="${user.firstName}"></span>
                                 <span th:text="${user.lastName}"></span>
                                 <!-- Add any other user information you want to display -->
+                                
                             </h5>
+                        </div>
+                        <div class="col col-sm-6 text-right">
+                            <!-- Delete button for each user -->
+                            <form th:action="@{'/admin/deleteUser/' + ${user.id}}" method="post">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
                         </div>
 
                         <!-- Add any additional functionality or buttons here -->
+                        
                     </div>
                 </li>
             </ul>
