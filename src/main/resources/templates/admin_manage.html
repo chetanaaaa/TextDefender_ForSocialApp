@@ -20,6 +20,14 @@
                     <input type="hidden" name="_method" value="DELETE">
                     <button type="submit">Delete</button>
                 </form>
+                <!-- Display comments for this tweet -->
+                <ul>
+                    <li th:each="comment : ${tweet.comments}">
+                        <p th:text="${comment.content}"></p>
+                        <p>Posted by: <span th:text="${comment.user.username}"></span></p>
+                        <p>Posted at: <span th:text="${comment.createdAt}"></span></p>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>
