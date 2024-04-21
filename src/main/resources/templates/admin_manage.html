@@ -11,6 +11,27 @@
         
         <!-- List of Users -->
         <h2>List of Users</h2>
+<<<<<<< HEAD
+        <ul>
+            <li th:each="user : ${users}">
+                <span th:text="${user.username}"></span> - 
+                <span th:text="${user.firstName}"></span> 
+                <span th:text="${user.lastName}"></span>
+                <form th:action="@{/admin/deleteUser/{id}(id=${user.id})}" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit">Delete</button>
+                </form>
+                <!-- Display comments for this tweet -->
+                <ul>
+                    <li th:each="comment : ${tweet.comments}">
+                        <p th:text="${comment.content}"></p>
+                        <p>Posted by: <span th:text="${comment.user.username}"></span></p>
+                        <p>Posted at: <span th:text="${comment.createdAt}"></span></p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+=======
         <div class="list-group">
             <ul>
                 <!-- Iterate over each user and display their information -->
@@ -42,6 +63,7 @@
                 </li>
             </ul>
         </div>
+>>>>>>> bca7608dc7d636fa396a50f5f594a835e4b753f1
     </div>
 </body>
 </html>

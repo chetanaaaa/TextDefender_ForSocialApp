@@ -60,7 +60,12 @@ public class TweetController {
         model.addAttribute("tweet", new Tweet());
         return "newTweet";
     }
-    
+    @GetMapping("/tweets/{tweetId}")
+public String getTweetDetails(@PathVariable Long tweetId, Model model) {
+    Tweet tweet = tweetService.findById(tweetId); // Fetch tweet from service
+    model.addAttribute("tweet", tweet); // Add tweet to the model
+    return "feed"; // Render the template
+}
 
     @GetMapping(value = "/tweets/{tag}")
     public String getTweetsByTag(@RequestParam(value = "filter", required = false) String filter, @PathVariable(value = "tag") String tag, Model model) {
@@ -115,3 +120,5 @@ public class TweetController {
     }
 
 }
+
+
