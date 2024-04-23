@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ooad.twitwit.factory.SpamWordFactory;
 import com.ooad.twitwit.model.SpamWord;
 import com.ooad.twitwit.service.SpamWordService;
 
@@ -21,6 +22,9 @@ public class SpamWordController {
     @Autowired
     private SpamWordService spamWordService;
 
+    @Autowired
+    private SpamWordFactory spamWordFactory;
+    
     @GetMapping
     public ResponseEntity<List<SpamWord>> getAllSpamWords() {
         List<SpamWord> spamWords = spamWordService.getAllSpamWords();

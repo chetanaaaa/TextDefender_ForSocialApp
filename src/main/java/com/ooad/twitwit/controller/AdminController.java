@@ -5,14 +5,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.ooad.twitwit.model.Admin;
 import com.ooad.twitwit.model.User;
-import com.ooad.twitwit.service.TweetService;
 import com.ooad.twitwit.service.UserService;
 
 
@@ -22,11 +21,15 @@ public class AdminController {
     @Autowired
 	private UserService userService;
 
-	@Autowired
-	private TweetService tweetService;
-
     @GetMapping("/admin/login")
     public String adminlogin() {
+    Admin admin = new Admin.Builder()
+    .adminId(1L)
+    .username("admin")
+    .password("12345")
+    .email("admin@gmail.com")
+    .build();
+
         return "admin_login";
     }
     @GetMapping("/")
